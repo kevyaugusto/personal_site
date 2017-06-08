@@ -1,5 +1,6 @@
 ﻿body {
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding-top: 4px;
 }
 
 header {
@@ -31,10 +32,6 @@ header, .navbar {
     background-color: #303036;
 }
 
-.container-nav {
-    padding: 12px 12px 12px 50px;
-}
-
 a.navbar-brand {
     font-size: 23px;
 }
@@ -43,22 +40,37 @@ a.navbar-brand {
     border: 0;
     text-transform: uppercase;
     margin-bottom: 0;
+    padding: 12px 12px 12px 35px;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 
-.navbar-default .navbar-brand,
-.navbar-default .navbar-nav > li > a {
+.cbp-af-header-shrink {
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0.9;
+}
+
+.navbar .navbar-brand,
+.navbar .navbar-nav > li > a {
     color: white;
     font-weight: 700;
 }
 
-    .navbar-default .navbar-nav > li > a:focus,
-    .navbar-default .navbar-nav > li > a:hover {
+    .navbar .navbar-nav > li > a:focus,
+    .navbar .navbar-nav > li > a:hover {
         color: #989898;
         background-color: transparent;
     }
 
 .navbar-brand a {
     padding: 50px;
+}
+
+.fill-screen {
+    background-image: url(../img/italy.JPG);
+    background-size: cover;
+    background-position: center;
 }
 
 .profile img {
@@ -74,7 +86,7 @@ ul.nav.navbar-nav.navbar-right {
 .section-highlighted {
     padding-top: 80px;
     padding-bottom: 80px;
-    background-color: #e8cd7d;
+    background-color: #d6c893;
     color: white;
 }
 
@@ -115,14 +127,16 @@ ul.nav.navbar-nav.navbar-right {
 }
 
 .hr-star,
-.hr-star-light {
+.hr-star-light,
+.hr-star-light-first {
     max-width: 250px;
     margin: 25px auto 30px;
     border-top: 5px solid;
 }
 
     .hr-star:after,
-    .hr-star-light:after {
+    .hr-star-light:after,
+    .hr-star-light-first:after {
         content: "\f005";
         display: inline-block;
         position: relative;
@@ -130,11 +144,17 @@ ul.nav.navbar-nav.navbar-right {
         padding: 0 .25em;
         font-family: FontAwesome;
         font-size: 2em;
+        border-radius: 50%;
     }
 
     .hr-star-light:after {
         color: #fff;
-        background-color: #e8cd7d;
+        background-color: #d6c893;
+    }
+
+    .hr-star-light-first:after {
+        color: #fff;
+        background-color: #5e6776;
     }
 
     .hr-star:after {
@@ -162,9 +182,16 @@ a[id="about"]:target ~ #about div.bio-description {
     transform: translateY(0);
 }
 
+.row-bottom-description {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
 @media (min-width: 768px) {
-    .container-nav {
-        padding-right: 0;
+
+    .navbar {
+        padding-left: 50px;
     }
 
     .intro-description span.name {
@@ -182,6 +209,7 @@ a[id="about"]:target ~ #about div.bio-description {
     img.padding-top-30 {
         padding-top: 30px;
     }
+
     .technologies h2 {
         font-size: 3em;
     }

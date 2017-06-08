@@ -13,8 +13,8 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid container-nav">
+        <nav class="navbar navbar-default navbar-fixed-top cbp-af-header">
+            <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed"
@@ -42,13 +42,17 @@
             </div><!-- /.container-fluid -->
         </nav>
     </header>
-    <div class="container-fluid section-highlighted">
+    <div class="container-fluid section-highlighted fill-screen">
         <div class="row">
             <div class="col-xs-12 profile">
                 <img class="img-responsive center-block img-circle" src="app/img/profile.jpg" alt="Kevy Augusto - .NET Software Developer" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 row-bottom-description">
                 <div class="intro-description">
                     <span class="name">Kevy Augusto</span>
-                    <hr class="hr-star-light" />
+                    <hr class="hr-star-light-first" />
                     <span class="profession">Software Engineer</span>
                 </div>
             </div>
@@ -197,7 +201,10 @@
     <!--JavaScripts-->
     <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-    <script src="app/js/site.js"></script>
+    <script src="Scripts/classie.js"></script>
+    <script src="Scripts/cbpAnimatedHeader.min.js"></script>
+
+<script src="app/js/site.js"></script>
 <!--END JavaScripts-->
     
 <script>

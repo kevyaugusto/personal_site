@@ -86,6 +86,7 @@
     <Content Include="app\img\employers\Microsoft.png" />
     <Content Include="app\img\employers\PaiconTechnologies.png" />
     <Content Include="app\img\employers\SiteMinder.png" />
+    <Content Include="app\img\italy.jpg" />
     <Content Include="app\img\profile.jpg" />
     <Content Include="app\img\technologies\AmazonWebServices.png" />
     <Content Include="app\img\technologies\AngularJS.png" />
@@ -128,6 +129,9 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\cbpAnimatedHeader.js" />
+    <Content Include="Scripts\cbpAnimatedHeader.min.js" />
+    <Content Include="Scripts\classie.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Web.config" />
