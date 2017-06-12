@@ -12,11 +12,12 @@ using WebApi.Repository.Interfaces;
 
 namespace WebApi.Controllers
 {
-    public abstract class BaseApiController<T> : ApiController 
+    public abstract class BaseApiController<T, T1> : ApiController 
         where T : BaseEntity
+        where T1 : IFactory, new()
     {
         private IRepository<T> _repository;
-        private InspirationalQuoteFactory _inspirationalQuoteFactory;
+        private T1 _factory;
 
         protected BaseApiController(IRepository<T> repository)
         {
@@ -28,15 +29,16 @@ namespace WebApi.Controllers
             get { return _repository; }
         }
 
-        protected InspirationalQuoteFactory InspirationalQuoteFactory
+        protected T1 Factory
         {
             get
             {
-                if (_inspirationalQuoteFactory == null)
+                if (_factory == null)
                 {
-                    _inspirationalQuoteFactory = new InspirationalQuoteFactory();
+                    _factory = new T1();
+                    _factory.Request = this.Request;
                 }
-                return _inspirationalQuoteFactory;
+                return _factory;
             }
         }
     }

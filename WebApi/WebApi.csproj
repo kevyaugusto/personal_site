@@ -130,6 +130,7 @@
     </Compile>
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Factories\Factory.cs" />
     <Compile Include="Models\InspirationalQuote.cs" />
     <Compile Include="Models\Factories\InspirationalQuoteFactory.cs" />
     <Compile Include="Models\PersonalSiteContext.cs" />

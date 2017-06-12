@@ -18,13 +18,13 @@ using WebApi.Repository.Interfaces;
 
 namespace WebApi.Controllers
 {
-    public class InspirationalQuotesController : BaseApiController<InspirationalQuoteEntity>
+    public class InspirationalQuotesController : BaseApiController<InspirationalQuoteEntity, InspirationalQuoteFactory>
     {
-        private readonly InspirationalQuoteFactory _inspirationalQuoteFactory;
+        //private readonly InspirationalQuoteFactory _inspirationalQuoteFactory;
 
         public InspirationalQuotesController(InspirationalQuoteRepository repository) : base(repository)
         {
-            _inspirationalQuoteFactory = new InspirationalQuoteFactory();
+            //_inspirationalQuoteFactory = new InspirationalQuoteFactory(this.Request);
         }
 
         // GET: api/InspirationalQuotes
@@ -35,7 +35,7 @@ namespace WebApi.Controllers
                 .Take(2)
                 .ToList();
             var results = inspirationalQuoteEntities
-                            .Select(s => _inspirationalQuoteFactory.Create(s));
+                            .Select(s => Factory.Create(s));
 
             return results;
         }
@@ -44,7 +44,7 @@ namespace WebApi.Controllers
         [ResponseType(typeof(InspirationalQuote))]
         public async Task<IHttpActionResult> GetInspirationalQuote(int id)
         {
-            var inspirationalQuote = _inspirationalQuoteFactory.Create(await Repository.GetById(id));
+            var inspirationalQuote = Factory.Create(await Repository.GetById(id));
 
             if (inspirationalQuote == null)
             {

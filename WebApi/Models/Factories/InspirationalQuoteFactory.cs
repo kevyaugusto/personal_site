@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Net.Http;
 using WebApi.Entities;
 
 namespace WebApi.Models.Factories
 {
-    public class InspirationalQuoteFactory //: IFactory
+    public class InspirationalQuoteFactory : IFactory
     {
         public InspirationalQuote Create(InspirationalQuoteEntity entity)
         {
@@ -15,10 +16,7 @@ namespace WebApi.Models.Factories
 
             return inspirationalQuoteModel;
         }
+        public HttpRequestMessage Request { get; set; }
 
-        //public IFactory GetFactory()
-        //{
-        //    return this;
-        //}
     }
 }
