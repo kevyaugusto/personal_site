@@ -8,6 +8,11 @@ namespace WebApi.Entities
 {
     public class BaseEntity
     {
+        public BaseEntity()
+        {
+            Active = true;
+            CreatedAt = DateTime.Now;
+        }
         public int Id { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

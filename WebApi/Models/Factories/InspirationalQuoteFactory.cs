@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Web.Http.Routing;
 using WebApi.Entities;
 
 namespace WebApi.Models.Factories
@@ -10,13 +11,32 @@ namespace WebApi.Models.Factories
         {
             var inspirationalQuoteModel = new InspirationalQuote
             {
+                Id = entity.Id,
                 Quote = entity.Quote,
-                Id = entity.Id
+                AuthorId = entity.AuthorId,
+                CreatedAt = entity.CreatedAt,
+                UpdatedAt = entity.UpdatedAt,
+                Active = entity.Active
             };
 
             return inspirationalQuoteModel;
         }
-        public HttpRequestMessage Request { get; set; }
 
+        public InspirationalQuoteEntity Parse(InspirationalQuote model)
+        {
+            var inspirationalQuoteEntity = new InspirationalQuoteEntity
+            {
+                Id = model.Id,
+                Quote = model.Quote,
+                AuthorId = model.AuthorId,
+                Active = model.Active,
+                UpdatedAt = model.UpdatedAt
+            };
+
+            return inspirationalQuoteEntity;
+        }
+
+        public HttpRequestMessage Request { get; set; }
+        public UrlHelper UrlHelper { get; set; }
     }
 }

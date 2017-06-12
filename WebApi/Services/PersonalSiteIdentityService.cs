@@ -6,7 +6,7 @@ namespace WebApi.Services
     {
         public string CurrentUser
         {
-            get { return "test"; }
+            get { return "UserTest"; }
         }
     }
 }

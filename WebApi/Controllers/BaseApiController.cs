@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Routing;
 using System.Web.Http.Validation.Providers;
 using WebApi.Entities;
 using WebApi.Models;
@@ -37,6 +38,7 @@ namespace WebApi.Controllers
                 {
                     _factory = new T1();
                     _factory.Request = this.Request;
+                    _factory.UrlHelper = new UrlHelper(Request);
                 }
                 return _factory;
             }

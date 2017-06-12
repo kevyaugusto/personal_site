@@ -1,41 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using WebApi.Controllers;
 using WebApi.Entities;
 using WebApi.Models;
 using WebApi.Models.Factories;
 using WebApi.Repository;
-using WebApi.Repository.Interfaces;
+using WebApi.Services.Interfaces;
 
 namespace WebApi.Controllers
 {
     public class InspirationalQuotesController : BaseApiController<InspirationalQuoteEntity, InspirationalQuoteFactory>
     {
-        //private readonly InspirationalQuoteFactory _inspirationalQuoteFactory;
+        private readonly IPersonalSiteIdentityService _identityService;
 
-        public InspirationalQuotesController(InspirationalQuoteRepository repository) : base(repository)
+        public InspirationalQuotesController(InspirationalQuoteRepository repository, IPersonalSiteIdentityService identityService) : base(repository)
         {
-            //_inspirationalQuoteFactory = new InspirationalQuoteFactory(this.Request);
+            _identityService = identityService;
         }
 
         // GET: api/InspirationalQuotes
         public IEnumerable<InspirationalQuote> GetInspirationalQuotes()
         {
-            var inspirationalQuoteEntities = Repository.GetAll()
+            var userName = _identityService.CurrentUser;
+
+            var results = Repository
+                .GetAll()
                 .OrderBy(o => Guid.NewGuid())
                 .Take(2)
-                .ToList();
-            var results = inspirationalQuoteEntities
-                            .Select(s => Factory.Create(s));
+                .ToList()
+                .Select(s => Factory.Create(s));
 
             return results;
         }
@@ -55,77 +54,69 @@ namespace WebApi.Controllers
         }
 
         // PUT: api/InspirationalQuotes/5
-        //[ResponseType(typeof(void))]
-        //public async Task<IHttpActionResult> PutInspirationalQuote(int id, InspirationalQuote inspirationalQuote)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        [ResponseType(typeof(void))]
+        public async Task<IHttpActionResult> PutInspirationalQuote(int id, InspirationalQuote inspirationalQuote)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-        //    if (id != inspirationalQuote.Id)
-        //    {
-        //        return BadRequest();
-        //    }
+            if (id != inspirationalQuote.Id)
+                return BadRequest();
 
-        //    _db.Entry(inspirationalQuote).State = EntityState.Modified;
+            var entity = Factory.Parse(inspirationalQuote);
 
-        //    try
-        //    {
-        //        await _db.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!InspirationalQuoteExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+            try
+            {
+                await Repository.Update(entity, p => p.AuthorId, p => p.Quote, p => p.Active, p => p.UpdatedAt);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!InspirationalQuoteExists(id))
+                {
+                    return NotFound();
+                }
+                throw;
+            }
 
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
+            return StatusCode(HttpStatusCode.OK);
+        }
 
-        //// POST: api/InspirationalQuotes
-        //[ResponseType(typeof(InspirationalQuote))]
-        //public async Task<IHttpActionResult> PostInspirationalQuote(InspirationalQuote inspirationalQuote)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        // POST: api/InspirationalQuotes
+        [ResponseType(typeof(InspirationalQuote))]
+        public async Task<IHttpActionResult> PostInspirationalQuote(InspirationalQuote inspirationalQuote)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-        //    _db.InspirationalQuotes.Add(inspirationalQuote);
-        //    await _db.SaveChangesAsync();
+            var entity = Factory.Parse(inspirationalQuote);
 
-        //    return CreatedAtRoute("DefaultApi", new { id = inspirationalQuote.Id }, inspirationalQuote);
-        //}
+            await Repository.Insert(entity);
 
-        //// DELETE: api/InspirationalQuotes/5
-        //[ResponseType(typeof(InspirationalQuote))]
-        //public async Task<IHttpActionResult> DeleteInspirationalQuote(int id)
-        //{
-        //    InspirationalQuote inspirationalQuote = await _db.InspirationalQuotes.FindAsync(id);
-        //    if (inspirationalQuote == null)
-        //    {
-        //        return NotFound();
-        //    }
+            return CreatedAtRoute("DefaultApi", new { id = entity.Id }, Factory.Create(entity));
+        }
 
-        //    _db.InspirationalQuotes.Remove(inspirationalQuote);
-        //    await _db.SaveChangesAsync();
+        // DELETE: api/InspirationalQuotes/5
+        [ResponseType(typeof(InspirationalQuote))]
+        public async Task<IHttpActionResult> DeleteInspirationalQuote(int id)
+        {
+            var inspirationalQuoteEntity = await Repository.GetById(id);
 
-        //    return Ok(inspirationalQuote);
-        //}
+            if (inspirationalQuoteEntity == null)
+                return NotFound();
+
+            var resultDelete = await Repository.Delete(inspirationalQuoteEntity);
+
+            if (resultDelete > 0)
+                return Ok(Factory.Create(inspirationalQuoteEntity));
+
+            return InternalServerError();
+        }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {
                 Repository.Dispose();
-            }
+
             base.Dispose(disposing);
         }
 
