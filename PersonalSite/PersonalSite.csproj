@@ -68,7 +68,9 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\classie.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <None Include="Properties\PublishProfiles\au.com.kevy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
