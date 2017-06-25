@@ -270,6 +270,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="English_Certificate_Langports.pdf" />
     <None Include="Properties\PublishProfiles\au.com.kevy_web.pubxml" />
   </ItemGroup>
   <PropertyGroup>
