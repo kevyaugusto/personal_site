@@ -180,6 +180,11 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Img\profile.JPG" />
+    <Content Include="Content\Img\Technologies\DotNETFramework.png" />
+    <Content Include="Content\Img\Technologies\jQuery.png" />
+    <Content Include="Content\Img\Technologies\visual_csharp.png" />
+    <Content Include="Content\Img\Technologies\Windows.png" />
     <Content Include="Curriculum_Kevy_Augusto.pdf" />
     <Content Include="Content\Css\bootstrap.css" />
     <Content Include="Content\Css\font-awesome.css" />
@@ -194,22 +199,17 @@
     <Content Include="Content\Img\Employers\PaiconTechnologies.png" />
     <Content Include="Content\Img\Employers\SiteMinder.png" />
     <Content Include="Content\Img\italy.jpg" />
-    <Content Include="Content\Img\profile.jpg" />
     <Content Include="Content\Img\Technologies\AmazonWebServices.png" />
     <Content Include="Content\Img\Technologies\AngularJS.png" />
     <Content Include="Content\Img\Technologies\ASPNET.png" />
     <Content Include="Content\Img\Technologies\Bootstrap.png" />
     <Content Include="Content\Img\Technologies\CSS3.png" />
-    <Content Include="Content\Img\Technologies\DotNETFramework.png" />
     <Content Include="Content\Img\Technologies\Git.png" />
     <Content Include="Content\Img\Technologies\HTML5.png" />
     <Content Include="Content\Img\Technologies\JavaScript.png" />
-    <Content Include="Content\Img\Technologies\jQuery.png" />
     <Content Include="Content\Img\Technologies\MicrosoftSQLServer.png" />
     <Content Include="Content\Img\Technologies\MongoDB.png" />
     <Content Include="Content\Img\Technologies\Redis.png" />
-    <Content Include="Content\Img\Technologies\visual_csharp.png" />
-    <Content Include="Content\Img\Technologies\Windows.png" />
     <Content Include="favicon.ico" />
     <Content Include="Content\Fonts\fontawesome-webfont.eot" />
     <Content Include="Content\Fonts\fontawesome-webfont.svg" />
@@ -278,7 +278,8 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

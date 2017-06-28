@@ -68,7 +68,7 @@ a.navbar-brand {
 }
 
 .fill-screen {
-    background-image: url(../Img/Italy.jpg);
+    /*background-image: url(../Img/Italy.jpg);*/
     background-size: cover;
     background-position: center;
 }
@@ -86,7 +86,7 @@ ul.nav.navbar-nav.navbar-right {
 .section-highlighted {
     padding-top: 80px;
     padding-bottom: 80px;
-    background-color: #d6c893;
+    background-color: #466384;
     color: white;
 }
 
@@ -149,12 +149,12 @@ ul.nav.navbar-nav.navbar-right {
 
     .hr-star-light:after {
         color: #fff;
-        background-color: #d6c893;
+        background-color: #466384;
     }
 
     .hr-star-light-first:after {
         color: #fff;
-        background-color: #5e6776;
+        background-color: #466384;
     }
 
     .hr-star:after {
