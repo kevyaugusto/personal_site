@@ -21,7 +21,7 @@ namespace PersonalSiteWeb.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("PersonalSiteConnection", throwIfV1Schema: false)
         {
         }
 
